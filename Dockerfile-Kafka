@@ -1,0 +1,2 @@
+FROM confluentinc/cp-kafka:7.5.3
+COPY ./scripts/entrypoint.sh /scripts/entrypoint.sh
