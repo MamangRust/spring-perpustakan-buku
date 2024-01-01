@@ -1,19 +1,20 @@
 package com.sanedge.perpustakaan_buku.config;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
+import org.springframework.kafka.config.TopicBuilder;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
-
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 
 import com.sanedge.perpustakaan_buku.dto.request.BookingData;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @Configuration
 public class KafkaConsumerConfig {
@@ -34,6 +35,14 @@ public class KafkaConsumerConfig {
         props.put(JsonDeserializer.TRUSTED_PACKAGES, "*"); // Untuk deserialisasi ke objek apa pun dalam paket tertentu
 
         return props;
+    }
+
+    @Bean
+    public NewTopic newBukuTopic() {
+        return TopicBuilder.name("buku_topic")
+                .partitions(3)
+                .compact()
+                .build();
     }
 
     @Bean

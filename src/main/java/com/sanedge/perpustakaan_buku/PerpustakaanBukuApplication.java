@@ -6,12 +6,14 @@ import java.util.List;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.kafka.annotation.EnableKafkaStreams;
 
 import com.sanedge.perpustakaan_buku.enums.ERole;
 import com.sanedge.perpustakaan_buku.models.Role;
 import com.sanedge.perpustakaan_buku.repository.RoleRepository;
 
 @SpringBootApplication
+@EnableKafkaStreams
 public class PerpustakaanBukuApplication {
 
 	public static void main(String[] args) {
